@@ -22,6 +22,10 @@ export function useReveal(threshold = 0.15) {
       ([entry]) => {
         if (entry.isIntersecting) {
           el.classList.add('visible');
+          // Also add visible class to all reveal children for proper animation
+          el.querySelectorAll('.reveal').forEach(child => {
+            child.classList.add('visible');
+          });
           observer.disconnect();
         }
       },

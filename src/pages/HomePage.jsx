@@ -129,10 +129,12 @@ export default function HomePage() {
                 Donasi Sekarang
               </button>
               <Link
-                to="/tentang-kami"
+                to="https://niatbaik.id/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-base text-slate-700 border border-slate-200 bg-white hover:border-sky-300 hover:text-sky-600 hover:bg-sky-50 transition-all shadow-sm hover:shadow-md"
               >
-                Pelajari Cara Kerja <ArrowRight size={16} aria-hidden="true" />
+                Pilih Program <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
 
@@ -245,10 +247,12 @@ export default function HomePage() {
               ))}
 
               <Link
-                to="/tentang-kami"
+                to="https://niatbaik.id/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white border-2 border-sky-500 text-sky-600 hover:bg-sky-50 hover:shadow-md px-7 py-3 rounded-full font-bold transition-all text-sm"
               >
-                Selengkapnya Tentang Kami <ChevronRight size={16} aria-hidden="true" />
+                Pilih Program Sekarang <ChevronRight size={16} aria-hidden="true" />
               </Link>
             </div>
 
