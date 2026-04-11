@@ -121,13 +121,15 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-1">
-              <button
-                type="button"
+              <a
+                href="https://niatbaik.id/campaign/djaz8mlwi9c"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-shimmer inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-sky-500 to-emerald-500 hover:from-sky-600 hover:to-emerald-600 text-white px-8 py-4 rounded-full font-extrabold text-base transition-all duration-300 shadow-xl shadow-sky-500/30 hover:shadow-2xl hover:shadow-sky-500/40 hover:-translate-y-1"
               >
                 <Heart size={20} fill="currentColor" className="animate-pulse" aria-hidden="true" />
                 Donasi Sekarang
-              </button>
+              </a>
               <Link
                 to="https://niatbaik.id/"
                 target="_blank"
@@ -345,15 +347,19 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <button
-              type="button"
+            <a
+              href="https://niatbaik.id/campaign/djaz8mlwi9c"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shimmer inline-flex items-center justify-center gap-2 bg-white text-sky-600 hover:bg-slate-50 px-10 py-4 rounded-full font-extrabold text-base transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full sm:w-auto"
             >
               <Heart size={18} fill="currentColor" aria-hidden="true" />
               Mulai Donasi Sekarang
-            </button>
+            </a>
             <Link
-              to="/mitra-kami"
+              to="https://niatbaik.id/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/60 text-white hover:bg-white/10 hover:border-white px-10 py-4 rounded-full font-bold text-base transition-all w-full sm:w-auto"
             >
               Lihat Program <ChevronRight size={18} aria-hidden="true" />

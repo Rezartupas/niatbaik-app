@@ -128,13 +128,15 @@ export default function Navbar() {
             </div>
 
             {/* CTA Button with shimmer */}
-            <Link
-              to="/#semua-program"
+            <a
+              href="https://niatbaik.id/campaign/djaz8mlwi9c"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-shimmer inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-sky-400 hover:from-sky-600 hover:to-sky-500 text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all duration-200 shadow-md shadow-sky-500/25 hover:shadow-lg hover:shadow-sky-500/30 hover:-translate-y-px"
             >
               <Heart size={14} fill="currentColor" className="animate-pulse" aria-hidden="true" />
               Donasi Sekarang
-            </Link>
+            </a>
           </div>
 
           {/* ── Mobile Hamburger (crossfade icon) ── */}
@@ -221,14 +223,16 @@ export default function Navbar() {
 
             {/* Mobile CTA */}
             <div className="pt-3 px-1">
-              <Link
-                to="/#semua-program"
+              <a
+                href="https://niatbaik.id/campaign/djaz8mlwi9c"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={closeMobileMenu}
                 className="btn-shimmer flex items-center justify-center gap-2 w-full bg-gradient-to-r from-sky-500 to-sky-400 text-white text-sm font-bold px-6 py-3.5 rounded-xl shadow-md shadow-sky-500/25"
               >
                 <Heart size={15} fill="currentColor" aria-hidden="true" />
                 Donasi Sekarang
-              </Link>
+              </a>
             </div>
           </div>
         </div>

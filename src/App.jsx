@@ -7,6 +7,10 @@ import MitraKamiPage from './pages/MitraKamiPage';
 import LegalitasPage from './pages/LegalitasPage';
 import SyaratKetentuanPage from './pages/SyaratKetentuanPage';
 import PusatBantuanPage from './pages/PusatBantuanPage';
+import AdminLoginPage from './pages/AdminLoginPage';
+import AdminCMSPage from './pages/AdminCMSPage';
+import RequireAuth from './components/RequireAuth';
+import { AuthProvider } from './context/AuthContext';
 
 /**
  * App — root router and shared layout wrapper.
@@ -24,23 +28,41 @@ import PusatBantuanPage from './pages/PusatBantuanPage';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col">
-        <Navbar />
+      <AuthProvider>
+        <Routes>
+          {/* ── Admin routes (standalone layout — no Navbar/Footer) ── */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route
+            path="/admin"
+            element={
+              <RequireAuth>
+                <AdminCMSPage />
+              </RequireAuth>
+            }
+          />
 
-        {/* Page content — grows to fill available vertical space */}
-        <div className="flex-1">
-          <Routes>
-            <Route path="/"                    element={<HomePage />} />
-            <Route path="/tentang-kami"        element={<TentangKamiPage />} />
-            <Route path="/mitra-kami"          element={<MitraKamiPage />} />
-            <Route path="/legalitas"           element={<LegalitasPage />} />
-            <Route path="/syarat-ketentuan"    element={<SyaratKetentuanPage />} />
-            <Route path="/pusat-bantuan"       element={<PusatBantuanPage />} />
-          </Routes>
-        </div>
-
-        <Footer />
-      </div>
+          {/* ── Public routes (shared Navbar + Footer layout) ── */}
+          <Route
+            path="/*"
+            element={
+              <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col">
+                <Navbar />
+                <div className="flex-1">
+                  <Routes>
+                    <Route path="/"                    element={<HomePage />} />
+                    <Route path="/tentang-kami"        element={<TentangKamiPage />} />
+                    <Route path="/mitra-kami"          element={<MitraKamiPage />} />
+                    <Route path="/legalitas"           element={<LegalitasPage />} />
+                    <Route path="/syarat-ketentuan"    element={<SyaratKetentuanPage />} />
+                    <Route path="/pusat-bantuan"       element={<PusatBantuanPage />} />
+                  </Routes>
+                </div>
+                <Footer />
+              </div>
+            }
+          />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
