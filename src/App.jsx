@@ -7,6 +7,7 @@ import MitraKamiPage from './pages/MitraKamiPage';
 import LegalitasPage from './pages/LegalitasPage';
 import SyaratKetentuanPage from './pages/SyaratKetentuanPage';
 import PusatBantuanPage from './pages/PusatBantuanPage';
+import FloatingActions from './components/FloatingActions';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminCMSPage from './pages/AdminCMSPage';
 import RequireAuth from './components/RequireAuth';
@@ -58,6 +59,7 @@ export default function App() {
                   </Routes>
                 </div>
                 <Footer />
+                <FloatingActions />
               </div>
             }
           />

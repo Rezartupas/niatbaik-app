@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Heart } from 'lucide-react';
-import { FOOTER_LINKS, SOCIAL_LINKS, CONTACT_LINKS } from '../data';
+import { SOCIAL_LINKS, CONTACT_LINKS } from '../data';
 
 /** SVG icon paths for social media — keyed by `SOCIAL_LINKS[].id` */
 const SOCIAL_ICONS = {
@@ -16,34 +16,51 @@ const SOCIAL_ICONS = {
 };
 
 /**
- * Global site footer — rendered on all pages via the layout.
+ * Global site footer.
+ *
+ * Mobile improvements:
+ *  - Grid collapses to 2-col on sm, 1-col on xs via explicit column control
+ *  - Brand section spans full width on xs, half on sm, quarter on lg
+ *  - Social icons have larger touch targets (w-11 h-11)
+ *  - Bottom section stacks on xs, rows on sm+
+ *  - Removed position:absolute from the gradient accent line (was causing clipping)
+ *  - Contact items have min-h for easy tapping
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300 border-t border-slate-800">
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <footer className="relative bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300 border-t border-slate-800">
+      {/* Top gradient accent */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
 
-          {/* Brand Section */}
-          <div className="lg:col-span-1">
+      {/* Main footer content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/*
+          Grid layout:
+          - xs   : 2 columns (brand full-width stacked above 3 nav cols)
+          - sm   : 2 columns
+          - lg   : 4 columns
+        */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10 sm:mb-12">
+
+          {/* Brand — full width on xs, spans 2 cols on sm, 1 on lg */}
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <Link to="/" className="inline-block mb-4" aria-label="NiatBaik – Halaman Utama">
-              <img src="/src/assets/Logo-02.png" alt="NiatBaik" className="h-12 w-auto object-contain" />
+              <img src="/src/assets/Logo-02.png" alt="NiatBaik" className="h-10 sm:h-12 w-auto object-contain" />
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">
+            <p className="text-sm text-slate-400 leading-relaxed mb-5 max-w-xs">
               Menghubungkan kebaikan Anda dengan mereka yang membutuhkan. Transparan, aman, dan berdampak.
             </p>
 
-            {/* Social Media Links */}
-            <div className="flex gap-3">
+            {/* Social icons — larger touch targets */}
+            <div className="flex gap-2 sm:gap-3">
               {SOCIAL_LINKS.map(({ id, label, href, hoverColor }) => (
                 <a
                   key={id}
                   href={href}
                   aria-label={label}
-                  className={`group w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 ${hoverColor} hover:text-white transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1`}
+                  className={`group w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 ${hoverColor} hover:text-white transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-90`}
                 >
                   <span className="sr-only">{label}</span>
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -54,63 +71,65 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Product Links */}
+          {/* Platform links */}
           <div>
             <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-widest">Platform</h3>
-            <nav className="space-y-3">
-              <Link to="/" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
-                Beranda
-              </Link>
-              <Link to="/mitra-kami" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
-                Mitra Kami
-              </Link>
-              <Link to="/tentang-kami" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
-                Tentang Kami
-              </Link>
-              <Link to="/pusat-bantuan" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
-                Pusat Bantuan
-              </Link>
+            <nav className="space-y-3.5">
+              {[
+                { to: '/', label: 'Beranda' },
+                { to: '/mitra-kami', label: 'Mitra Kami' },
+                { to: '/tentang-kami', label: 'Tentang Kami' },
+                { to: '/pusat-bantuan', label: 'Pusat Bantuan' },
+              ].map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 min-h-[24px]"
+                >
+                  {label}
+                </Link>
+              ))}
             </nav>
           </div>
 
-          {/* Legal Links */}
+          {/* Legal links */}
           <div>
             <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-widest">Legal</h3>
-            <nav className="space-y-3">
-              <Link to="/syarat-ketentuan" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
-                Syarat & Ketentuan
+            <nav className="space-y-3.5">
+              <Link to="/syarat-ketentuan" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 min-h-[24px]">
+                Syarat &amp; Ketentuan
               </Link>
-              <Link to="/legalitas" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
+              <Link to="/legalitas" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 min-h-[24px]">
                 Legalitas
               </Link>
-              <a href="#privacy" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
+              <a href="#privacy" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 min-h-[24px]">
                 Kebijakan Privasi
               </a>
-              <a href="#faq" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200">
+              <a href="#faq" className="block text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 min-h-[24px]">
                 FAQ
               </a>
             </nav>
           </div>
 
-          {/* Contact Info */}
-          <div>
+          {/* Contact info — full-width on xs */}
+          <div className="col-span-2 sm:col-span-1">
             <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-widest">Hubungi Kami</h3>
             <div className="space-y-4">
               <a
                 href={CONTACT_LINKS.whatsapp}
-                className="flex items-center gap-3 text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 group"
+                className="flex items-center gap-3 text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 group min-h-[44px]"
               >
                 <Phone size={16} className="flex-shrink-0 group-hover:animate-bounce" />
                 <span>+62 811 223 344 55</span>
               </a>
               <a
                 href={CONTACT_LINKS.email}
-                className="flex items-center gap-3 text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 group"
+                className="flex items-center gap-3 text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 group min-h-[44px]"
               >
                 <Mail size={16} className="flex-shrink-0" />
                 <span>halo@niatbaik.id</span>
               </a>
-              <div className="flex items-start gap-3 text-sm text-slate-400">
+              <div className="flex items-start gap-3 text-sm text-slate-400 min-h-[44px]">
                 <MapPin size={16} className="flex-shrink-0 mt-0.5" />
                 <span>Jakarta, Indonesia</span>
               </div>
@@ -119,28 +138,24 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-slate-800 my-8" />
+        <div className="border-t border-slate-800 my-6 sm:my-8" />
 
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* Bottom row — stack on xs, row on sm+ */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
           <p className="text-xs text-slate-500">
-            &copy; {currentYear} <span className="font-semibold text-slate-400">Yayasan Niat Baik Indonesia</span>. Semua hak dilindungi.
+            &copy; {currentYear}{' '}
+            <span className="font-semibold text-slate-400">Yayasan Niat Baik Indonesia</span>. Semua hak dilindungi.
           </p>
 
           <div className="flex items-center gap-2 text-xs text-slate-500">
             <span>Dibuat dengan</span>
-            <Heart size={14} className="text-red-500 fill-red-500 animate-pulse" />
+            <Heart size={13} className="text-red-500 fill-red-500 animate-pulse" />
             <span>untuk Indonesia</span>
           </div>
 
-          <div className="text-xs text-slate-600">
-            v1.0.0
-          </div>
+          <div className="text-xs text-slate-700 font-mono">v1.0.0</div>
         </div>
       </div>
-
-      {/* Subtle top gradient accent */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
     </footer>
   );
 }

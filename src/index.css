@@ -169,3 +169,41 @@
 .counter-pop {
   animation: counter-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE / ACCESSIBILITY UTILITIES
+   ══════════════════════════════════════════════════════════════ */
+
+/* Hide scrollbar while keeping scroll functionality (horizontal carousels) */
+.scrollbar-hide {
+  -ms-overflow-style: none;   /* IE / Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari, Opera */
+}
+
+/* Smooth scroll – global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Touch manipulation — removes 300ms tap delay on mobile */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Improve tap highlight on mobile interactive elements */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Focus-visible ring — visible only for keyboard nav, not mouse */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+*:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 3px;
+  border-radius: 4px;
+}

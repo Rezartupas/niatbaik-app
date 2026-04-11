@@ -5,19 +5,19 @@
 
 export const HERO_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80',
+    src: '/src/assets/gambar-1.jpg',
     alt: 'Penerima manfaat 1',
   },
   {
-    src: 'https://images.unsplash.com/photo-1593113580332-ceb4b1c855a9?auto=format&fit=crop&w=1000&q=80',
+    src: '/src/assets/gambar-2.jpg',
     alt: 'Penerima manfaat 2',
   },
   {
-    src: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ce122?auto=format&fit=crop&w=1000&q=80',
+    src: '/src/assets/gambar-3.jpg',
     alt: 'Penerima manfaat 3',
   },
   {
-    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80',
+    src: '/src/assets/gambar-4.jpg',
     alt: 'Penerima manfaat 4',
   },
 ];
