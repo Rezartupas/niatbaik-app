@@ -1,0 +1,5 @@
+/* App.css is intentionally empty.
+ * All component styles are handled by Tailwind utility classes in JSX.
+ * Add scoped CSS here only when Tailwind utilities are genuinely insufficient.
+ * Global animations and keyframes live in src/index.css.
+ */
