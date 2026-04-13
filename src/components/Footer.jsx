@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Heart } from 'lucide-react';
 import { SOCIAL_LINKS, CONTACT_LINKS } from '../data';
+import logoImg from '../assets/Logo-02.png';
 
 /** SVG icon paths for social media — keyed by `SOCIAL_LINKS[].id` */
 const SOCIAL_ICONS = {
@@ -47,7 +48,7 @@ export default function Footer() {
           {/* Brand — full width on xs, spans 2 cols on sm, 1 on lg */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <Link to="/" className="inline-block mb-4" aria-label="NiatBaik – Halaman Utama">
-              <img src="/src/assets/Logo-02.png" alt="NiatBaik" className="h-10 sm:h-12 w-auto object-contain" />
+              <img src={logoImg} alt="NiatBaik" className="h-10 sm:h-12 w-auto object-contain" />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-5 max-w-xs">
               Menghubungkan kebaikan Anda dengan mereka yang membutuhkan. Transparan, aman, dan berdampak.

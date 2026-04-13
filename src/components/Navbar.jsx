@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, ChevronDown, MessageCircle, Mail, Heart } from 'lucide-react';
 import { NAV_LINKS, CONTACT_LINKS } from '../data';
+import logoImg from '../assets/Logo-02.png';
 
 /**
  * Global navigation bar — fixed at the top of every page.
@@ -61,7 +62,7 @@ export default function Navbar() {
               className="flex-shrink-0 flex items-center group"
             >
               <img
-                src="src/assets/Logo-02.png"
+                src={logoImg}
                 alt="NiatBaik"
                 className={`w-auto object-contain transition-all duration-300 group-hover:opacity-80
                   ${scrolled ? 'h-7' : 'h-8 sm:h-10'}`}

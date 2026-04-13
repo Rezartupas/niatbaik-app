@@ -3,21 +3,26 @@
  * Replace these with real API calls when the backend is ready.
  */
 
+import img1 from '../assets/gambar-1.jpg';
+import img2 from '../assets/gambar-2.jpg';
+import img3 from '../assets/gambar-3.jpg';
+import img4 from '../assets/gambar-4.jpg';
+
 export const HERO_IMAGES = [
   {
-    src: '/src/assets/gambar-1.jpg',
+    src: img1,
     alt: 'Penerima manfaat 1',
   },
   {
-    src: '/src/assets/gambar-2.jpg',
+    src: img2,
     alt: 'Penerima manfaat 2',
   },
   {
-    src: '/src/assets/gambar-3.jpg',
+    src: img3,
     alt: 'Penerima manfaat 3',
   },
   {
-    src: '/src/assets/gambar-4.jpg',
+    src: img4,
     alt: 'Penerima manfaat 4',
   },
 ];
