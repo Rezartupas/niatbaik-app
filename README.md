@@ -76,7 +76,8 @@ niatbaik-app/
 │   │   ├── useReveal.js            # Intersection Observer → scroll animations
 │   │   └── useCounter.js           # Animated number counter hook
 │   ├── utils/
-│   │   └── auth.js                 # ★ SHA-256 hashing, session, brute-force lock
+│   │   ├── auth.js                 # ★ SHA-256 hashing, session, brute-force lock
+│   │   └── analytics.js            # ★ Utilitas pelacakan GTM, Meta Pixel, & TikTok Pixel
 │   ├── assets/
 │   │   ├── Logo-02.png             # Logo NiatBaik
 │   │   ├── gambar-1.jpg            # Foto hero carousel 1
@@ -217,6 +218,26 @@ Keduanya:
 - Touch target minimum **48×48px** (WCAG 2.5.5)
 - Aman dari iOS home indicator via `env(safe-area-inset-bottom)`
 - `active:scale-90` untuk feedback sentuhan
+
+---
+
+## 📈 Sistem Pelacakan Analitik (Marketing Ads)
+
+Platform telah dilengkapi pelacakan event lintas-platform secara asinkronus dan aman via **`src/utils/analytics.js`**.
+
+| Platform | Event Utama yang Dilacak | Lokasi Skrip Inti |
+|----------|---------------------------|-------------------|
+| **Google Tag Manager** | `ViewPage`, `InitiateDonation`, `ViewPrograms` | `<head>` dan `<body>` |
+| **Meta Pixel (FB)** | `PageView`, `InitiateCheckout`, `ViewContent` | `<head>` |
+| **TikTok Pixel** | `page`, `InitiateCheckout`, `ViewContent` | `<head>` |
+
+**Tugas Wajib Sebelum Rilis:**
+Buka file `index.html` dan ganti parameter string dummy dengan ID Tracker produksi milik klien:
+- `GTM-XXXXXXX`
+- `META-PIXEL-ID`
+- `TIKTOK-PIXEL-ID`
+
+Semua tombol utama "Donasi Sekarang" & "Pilih Program" di `HomePage.jsx` sudah di-hook menggunakan *onClick handler* ke sentral fungsi `trackDonateClick(source)` dan `trackViewPrograms(source)` untuk memudahkan pembuatan *Lookalike Audiences* di dashboard pengiklan.
 
 ---
 
@@ -369,8 +390,9 @@ npm run lint   # ESLint dengan rules React Hooks + React Refresh
 - ✅ Admin CMS page (`/admin`) dengan auth SHA-256
 - ✅ Brute-force lockout 15 menit, session TTL 2 jam
 - ✅ FloatingActions: WhatsApp FAB pulse + scroll-to-top FAB
-- ✅ Global CSS utilities: scrollbar-hide, touch-manipulation, focus-visible ring
-- ✅ iOS safe-area-inset untuk floating buttons
+- ✅ Globals: scrollbar-hide, touch-manipulation, focus-visible ring, iOS safe-area
+- ✅ **Fix**: Import CSS/Assets untuk gambar statis `/src/assets` agar tidak error (404) di production build.
+- ✅ **Marketing Analytics**: Setup GTM, Meta Pixel, & TikTok Pixel di `index.html` + event triggers utilitas sentral (`src/utils/analytics.js`).
 
 ---
 

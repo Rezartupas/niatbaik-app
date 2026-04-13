@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { trackEvent, trackDonateClick, trackViewPrograms } from '../utils/analytics';
 import {
   Heart, ShieldCheck, TrendingUp, ChevronRight,
   Zap, Users, Globe, ArrowRight, Star, Quote,
@@ -96,6 +98,10 @@ export default function HomePage() {
   const aboutRef    = useReveal(0.1);
   const testiRef    = useReveal(0.1);
 
+  useEffect(() => {
+    trackEvent('ViewPage', { page_name: 'Homepage NiatBaik' });
+  }, []);
+
   return (
     <main className="overflow-x-hidden">
 
@@ -148,6 +154,7 @@ export default function HomePage() {
                 href="https://niatbaik.id/campaign/djaz8mlwi9c"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackDonateClick('Hero Section')}
                 className="btn-shimmer inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-sky-500 to-emerald-500 hover:from-sky-600 hover:to-emerald-600 text-white px-8 py-4 rounded-full font-extrabold text-base transition-all duration-300 shadow-xl shadow-sky-500/30 hover:shadow-2xl hover:shadow-sky-500/40 hover:-translate-y-1 active:scale-95 w-full sm:w-auto"
               >
                 <Heart size={20} fill="currentColor" className="animate-pulse" aria-hidden="true" />
@@ -157,6 +164,7 @@ export default function HomePage() {
                 href="https://niatbaik.id/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackViewPrograms('Hero Section')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-base text-slate-700 border border-slate-200 bg-white hover:border-sky-300 hover:text-sky-600 hover:bg-sky-50 transition-all shadow-sm hover:shadow-md active:scale-95 w-full sm:w-auto"
               >
                 Pilih Program <ArrowRight size={16} aria-hidden="true" />
@@ -296,6 +304,7 @@ export default function HomePage() {
                 href="https://niatbaik.id/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackViewPrograms('Langkah Mudah Section')}
                 className="inline-flex items-center justify-center gap-2 bg-white border-2 border-sky-500 text-sky-600 hover:bg-sky-50 hover:shadow-md px-7 py-3 rounded-full font-bold transition-all text-sm active:scale-95 w-full sm:w-auto"
               >
                 Pilih Program Sekarang <ChevronRight size={16} aria-hidden="true" />
@@ -417,6 +426,7 @@ export default function HomePage() {
               href="https://niatbaik.id/campaign/djaz8mlwi9c"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackDonateClick('Bottom CTA Banner')}
               className="btn-shimmer inline-flex items-center justify-center gap-2 bg-white text-sky-600 hover:bg-slate-50 px-10 py-4 rounded-full font-extrabold text-base transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 w-full sm:w-auto"
             >
               <Heart size={18} fill="currentColor" aria-hidden="true" />
@@ -426,6 +436,7 @@ export default function HomePage() {
               href="https://niatbaik.id/"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackViewPrograms('Bottom CTA Banner')}
               className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/60 text-white hover:bg-white/10 hover:border-white px-10 py-4 rounded-full font-bold text-base transition-all active:scale-95 w-full sm:w-auto"
             >
               Lihat Program <ChevronRight size={18} aria-hidden="true" />
